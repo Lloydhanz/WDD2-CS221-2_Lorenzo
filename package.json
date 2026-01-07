@@ -1,0 +1,24 @@
+{
+  "name": "wdd2-cs221-2_lorenzo",
+  "version": "1.0.0",
+  "description": "wdd2 scaffold project",
+  "homepage": "https://github.com/Lloydhanz/WDD2-CS221-2_Lorenzo#readme",
+  "bugs": {
+    "url": "https://github.com/Lloydhanz/WDD2-CS221-2_Lorenzo/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lloydhanz/WDD2-CS221-2_Lorenzo.git"
+  },
+  "license": "ISC",
+  "author": "Lloyd",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
