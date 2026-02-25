@@ -9,7 +9,7 @@ export default function Landing() {
     <div>
       <Header />
       <Hero
-        title="Welcome to Inventory Manager"
+        title="My App"
         description="Your one-stop solution for inventory management."
         ButtonText="Get Started"
       />
