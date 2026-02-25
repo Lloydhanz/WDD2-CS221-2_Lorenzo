@@ -5,6 +5,8 @@ import "./Login.css";
 import { useState, useEffect, use } from "react";
 import TextArea from "../components/TextArea";
 import slugify from "slugify";
+import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Inventory = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +18,9 @@ const Inventory = () => {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState();
   const [slug, setSlug] = useState("");
+
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,6 +43,13 @@ const Inventory = () => {
     });
     setSlug(generatedSlug);
   }, [formData]);
+
+  useEffect(() => {
+    if (!user) {
+      alert("You must be logged in to access the inventory page.");
+      navigate("/login");
+    }
+  }, []);
 
   return (
     <Card title="Create Product">
