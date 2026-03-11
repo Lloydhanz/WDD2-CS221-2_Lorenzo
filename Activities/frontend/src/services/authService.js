@@ -2,18 +2,24 @@ const API_URL = "http://localhost:3000/api/auth";
 
 export const authService = {
   async login(credentials) {
-    const response = await fetch(`${API_URL}/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(credentials),
-    });
-    const data = await response.json();
-    if (!response.ok) {
-      throw new Error(data.message || "Login failed");
+    try {
+      console.log(`${API_URL} ${JSON.stringify(credentials)}`);
+      const response = await fetch(`${API_URL}/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(credentials),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.message || "Login failed");
+      }
+      return data;
+    } catch (error) {
+      console.error("Login error:", error);
+      throw error;
     }
-    return data;
   },
   async logout() {
     const token = localStorage.getItem("token");
@@ -45,7 +51,7 @@ export const authService = {
 
   getCurrentUser() {
     const userStr = localStorage.getItem("user");
-    return userStr ? JSON.stringify(userStr) : null;
+    return userStr ? JSON.parse(userStr) : null;
   },
   getToken() {
     return localStorage.getItem("token");

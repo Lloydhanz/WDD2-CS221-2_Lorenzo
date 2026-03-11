@@ -2,7 +2,7 @@
   width: 100%;
   padding: 0.875rem 1.5rem;
   border-radius: 8px;
-  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.06);
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -16,6 +16,7 @@
 .btn-primary {
   background-color: var(--primary-blue);
   color: white;
+  box-shadow: 0 6px 14px rgba(30, 144, 255, 0.12);
 }
 
 .btn-primary:hover:not(:disabled) {
@@ -27,6 +28,7 @@
 .btn-secondary {
   background-color: var(--secondary-green);
   color: white;
+  box-shadow: 0 6px 14px rgba(16, 185, 129, 0.12);
 }
 
 .btn-secondary:hover:not(:disabled) {

@@ -1,4 +1,4 @@
-import Login from "./pages/login";
+import AuthPage from "./pages/AuthPage";
 import Landing from "./pages/Landing";
 import Inventory from "./pages/Inventory";
 import "./App.css";
@@ -11,7 +11,8 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<AuthPage />} />
+          <Route path="/auth" element={<AuthPage />} />
           <Route path="/inventory" element={<Inventory />} />
         </Routes>
       </AuthProvider>

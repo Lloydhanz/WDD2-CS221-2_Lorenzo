@@ -15,7 +15,15 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (credentials) => {
     const data = await authService.login(credentials);
-    setUser(data.user);
+    // backend may return { _id, username, token } or { user, token }
+    const userObj = data.user
+      ? data.user
+      : data.username || data._id
+        ? { id: data._id || null, username: data.username || null }
+        : null;
+    if (data?.token) localStorage.setItem("token", data.token);
+    if (userObj) localStorage.setItem("user", JSON.stringify(userObj));
+    setUser(userObj);
     return data;
   };
 
