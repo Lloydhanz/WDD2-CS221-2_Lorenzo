@@ -3,9 +3,11 @@ import Card from "../../components/Card";
 import Button from "../../components/button";
 import { useAuth } from "../../contexts/AuthContext";
 import "./RegisterComponent.css";
+import { useNavigate } from "react-router-dom";
 
 const RegisterComponent = ({ noCard = false }) => {
   const { register } = useAuth();
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     username: "",
     name: "",
@@ -36,7 +38,8 @@ const RegisterComponent = ({ noCard = false }) => {
         email: form.email,
         password: form.password,
       });
-      alert("Registration successful");
+      // After successful registration, redirect to login page
+      navigate("/login", { replace: true });
     } catch (err) {
       setError(err?.message || "Registration failed");
     } finally {

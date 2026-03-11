@@ -2,11 +2,12 @@ import Card from "../components/Card";
 import Button from "../components/button";
 import Input from "../components/Input";
 import "./Login.css";
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import TextArea from "../components/TextArea";
 import slugify from "slugify";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { createProduct } from "../services/productService";
 
 const Inventory = () => {
   const [formData, setFormData] = useState({
@@ -16,7 +17,7 @@ const Inventory = () => {
     slug: "",
   });
   const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState();
+  const [loading, setLoading] = useState(false);
   const [slug, setSlug] = useState("");
 
   const { user } = useAuth();
@@ -29,10 +30,29 @@ const Inventory = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrors({});
+    // Basic client-side validation
+    if (!formData.name) {
+      setErrors({ error: "Name is required" });
+      return;
+    }
+    setLoading(true);
     try {
-      alert("Product Page");
-    } catch (error) {
-      setErrors({ error: error.message });
+      await createProduct({
+        name: formData.name,
+        description: formData.description,
+        price: Number(formData.price) || 0,
+        slug: slug,
+      });
+      // Reset form after successful save
+      setFormData({ name: "", description: "", price: 0, slug: "" });
+      setSlug("");
+      // Optionally notify user
+      alert("Product saved");
+    } catch (err) {
+      setErrors({ error: err?.message || "Failed to save product" });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -60,7 +80,7 @@ const Inventory = () => {
           name="name"
           value={formData.name}
           onChange={handleChange}
-          error={errors.email}
+          error={errors.name}
           placeholder="Enter product name"
           required
         />
@@ -93,7 +113,7 @@ const Inventory = () => {
         />
 
         <Button type="submit" loading={loading}>
-          Save Produt
+          Save Product
         </Button>
       </form>
     </Card>

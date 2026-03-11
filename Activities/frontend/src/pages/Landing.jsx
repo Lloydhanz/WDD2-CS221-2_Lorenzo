@@ -9,9 +9,10 @@ export default function Landing() {
     <div>
       <Header />
       <Hero
-        title="My App"
+        title="Inventory Manager"
         description="Your one-stop solution for inventory management."
         ButtonText="Get Started"
+        ButtonLink="/auth" // direct users to the authentication flow (login/register)
       />
       <MainContent />
       <Footer />
