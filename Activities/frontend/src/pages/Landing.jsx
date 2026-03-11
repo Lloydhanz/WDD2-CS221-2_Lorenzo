@@ -1,12 +1,13 @@
 import React from "react";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
+import "./Landing.css";
 import MainContent from "../components/MainContent";
 import Footer from "../components/Footer";
 
 export default function Landing() {
   return (
-    <div>
+    <div className="landing-page">
       <Header />
       <Hero
         title="Inventory Manager"

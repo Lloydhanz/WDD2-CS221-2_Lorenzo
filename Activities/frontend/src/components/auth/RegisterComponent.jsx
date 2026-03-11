@@ -38,7 +38,8 @@ const RegisterComponent = ({ noCard = false }) => {
         email: form.email,
         password: form.password,
       });
-      // After successful registration, redirect to login page
+      // After successful registration, show a success message and redirect to login
+      alert("Sign up successful. Please login.");
       navigate("/login", { replace: true });
     } catch (err) {
       setError(err?.message || "Registration failed");

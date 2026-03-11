@@ -17,6 +17,7 @@ const Inventory = () => {
     slug: "",
   });
   const [errors, setErrors] = useState({});
+  const [notif, setNotif] = useState("");
   const [loading, setLoading] = useState(false);
   const [slug, setSlug] = useState("");
 
@@ -47,8 +48,10 @@ const Inventory = () => {
       // Reset form after successful save
       setFormData({ name: "", description: "", price: 0, slug: "" });
       setSlug("");
-      // Optionally notify user
-      alert("Product saved");
+      // Notify user about success
+      setNotif("Product saved");
+      // Clear notification after a moment
+      setTimeout(() => setNotif(""), 3000);
     } catch (err) {
       setErrors({ error: err?.message || "Failed to save product" });
     } finally {
@@ -71,8 +74,9 @@ const Inventory = () => {
     }
   }, []);
 
-  return (
+   return (
     <Card title="Create Product">
+      {notif && <div className="inventory-notif">{notif}</div>}
       <form onSubmit={handleSubmit} className="login-form">
         <Input
           label="Name"

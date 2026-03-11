@@ -4,7 +4,7 @@ const Input = ({ label, error, ...props }) => {
     <div className="input-group">
       {label && <label className="input-label">{label}</label>}
       <input
-        className={`input-field ${error ? ïnput - error : ""}`}
+        className={`input-field ${error ? "input-error" : ""}`}
         {...props}
       />
       {error && <span className="error-message">{error}</span>}

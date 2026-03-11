@@ -23,7 +23,8 @@ const LoginComponent = ({ noCard = false }) => {
     setLoading(true);
     try {
       await login(form);
-      // navigate to inventory after successful login
+      // Show a success notification and then navigate to inventory
+      alert("Login successful");
       navigate("/inventory", { replace: true });
     } catch (err) {
       const msg = err?.message || "Login failed";
